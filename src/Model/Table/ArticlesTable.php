@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -61,5 +62,10 @@ class ArticlesTable extends Table
             ->allowEmptyString('body');
 
         return $validator;
+    }
+
+    public function isOwnedBy($articleId, $userId)
+    {
+        return $this->exists(['id' => $articleId, 'user_id' => $userId]);
     }
 }
